@@ -11,5 +11,34 @@ config_version=5
 [application]
 
 config/name="Recorder"
+config/name_localized={
+"zh_CN": "录录录录录时间到了"
+}
+config/description="lu lu lu lu lu shi jian dao le"
+config/version="1.0"
+run/main_scene="uid://ibdwq7kbqw0x"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="gd_recorder"
 config/features=PackedStringArray("4.4", "Forward Plus")
+run/low_processor_mode=true
 config/icon="res://icon.svg"
+
+[audio]
+
+driver/enable_input=true
+
+[display]
+
+window/size/resizable=false
+window/size/borderless=true
+window/size/transparent=true
+window/subwindows/embed_subwindows=false
+window/per_pixel_transparency/allowed=true
+
+[internationalization]
+
+locale/locale_filter_mode=0
+
+[rendering]
+
+viewport/hdr_2d=true
