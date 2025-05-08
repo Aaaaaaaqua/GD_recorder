@@ -1,14 +1,110 @@
-[gd_scene load_steps=2 format=3 uid="uid://ibdwq7kbqw0x"]
+[gd_scene load_steps=10 format=3 uid="uid://ibdwq7kbqw0x"]
+
+[ext_resource type="Texture2D" uid="uid://ffihk352d5tb" path="res://Icon/exit.svg" id="1_wjws1"]
+[ext_resource type="Texture2D" uid="uid://bxmg03m4k2hoj" path="res://Icon/not_recording.svg" id="2_bsxot"]
+[ext_resource type="Texture2D" uid="uid://0l20lfxguwvu" path="res://Icon/play.svg" id="3_x78fb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eellu"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0.255301, 0.357037, 0.420202, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
 
 [sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_eellu"]
 
-[node name="Interface" type="Control"]
-layout_mode = 3
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wjws1"]
+content_margin_left = 2.0
+content_margin_right = 2.0
+bg_color = Color(0.00194972, 0.12918, 0.266471, 0.721569)
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_xjjv4"]
+font_size = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3q01n"]
+bg_color = Color(0.129412, 0.219608, 0.317647, 1)
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1u6j5"]
+bg_color = Color(0.129412, 0.219608, 0.317647, 1)
+corner_radius_bottom_right = 7
+
+[node name="Interface" type="PanelContainer"]
+clip_children = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_eellu")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamMicrophone_eellu")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TitleBar" type="PanelContainer" parent="VBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wjws1")
+
+[node name="HBox" type="HBoxContainer" parent="VBox/TitleBar"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="VBox/TitleBar/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Here the world!!"
+label_settings = SubResource("LabelSettings_xjjv4")
+
+[node name="ExitButton" type="TextureButton" parent="VBox/TitleBar/HBox"]
+modulate = Color(0.4, 0.721569, 1, 1)
+custom_minimum_size = Vector2(18, 0)
+layout_mode = 2
+texture_normal = ExtResource("1_wjws1")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="HBox" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HFlowContainer" type="HFlowContainer" parent="VBox/HBox"]
+custom_minimum_size = Vector2(104.795, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/v_separation = 7
+
+[node name="Record" type="TextureButton" parent="VBox/HBox/HFlowContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("2_bsxot")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Play" type="TextureButton" parent="VBox/HBox/HFlowContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("3_x78fb")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Save" type="Button" parent="VBox/HBox/HFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_3q01n")
+text = " Save"
+
+[node name="Specturm" type="PanelContainer" parent="VBox/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_1u6j5")
