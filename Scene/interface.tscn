@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://ibdwq7kbqw0x"]
+[gd_scene load_steps=12 format=3 uid="uid://ibdwq7kbqw0x"]
 
+[ext_resource type="Script" uid="uid://bcldagje2yyea" path="res://Script/interface.gd" id="1_3q01n"]
 [ext_resource type="Texture2D" uid="uid://ffihk352d5tb" path="res://Icon/exit.svg" id="1_wjws1"]
 [ext_resource type="Texture2D" uid="uid://bxmg03m4k2hoj" path="res://Icon/not_recording.svg" id="2_bsxot"]
 [ext_resource type="Texture2D" uid="uid://0l20lfxguwvu" path="res://Icon/play.svg" id="3_x78fb"]
+[ext_resource type="Script" uid="uid://b1iqn4lbwi2iy" path="res://Script/specturm.gd" id="5_1u6j5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eellu"]
 content_margin_left = 3.0
@@ -44,9 +46,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_eellu")
+script = ExtResource("1_3q01n")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Mic" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamMicrophone_eellu")
+bus = &"Record"
 
 [node name="VBox" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -83,6 +87,7 @@ size_flags_horizontal = 0
 theme_override_constants/v_separation = 7
 
 [node name="Record" type="TextureButton" parent="VBox/HBox/HFlowContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -108,3 +113,9 @@ text = " Save"
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_1u6j5")
+script = ExtResource("5_1u6j5")
+
+[connection signal="pressed" from="VBox/TitleBar/HBox/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="VBox/HBox/HFlowContainer/Record" to="." method="_on_record_pressed"]
+[connection signal="pressed" from="VBox/HBox/HFlowContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBox/HBox/HFlowContainer/Save" to="." method="_on_save_pressed"]
