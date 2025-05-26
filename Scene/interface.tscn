@@ -48,8 +48,13 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_eellu")
 script = ExtResource("1_3q01n")
 
+[node name="Playback" type="AudioStreamPlayer" parent="."]
+volume_db = 24.0
+bus = &"Record"
+
 [node name="Mic" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamMicrophone_eellu")
+autoplay = true
 bus = &"Record"
 
 [node name="VBox" type="VBoxContainer" parent="."]
@@ -115,6 +120,7 @@ size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_1u6j5")
 script = ExtResource("5_1u6j5")
 
+[connection signal="finished" from="Playback" to="." method="_on_playback_finished"]
 [connection signal="pressed" from="VBox/TitleBar/HBox/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="VBox/HBox/HFlowContainer/Record" to="." method="_on_record_pressed"]
 [connection signal="pressed" from="VBox/HBox/HFlowContainer/Play" to="." method="_on_play_pressed"]
