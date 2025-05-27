@@ -17,6 +17,7 @@ config/name_localized={
 config/description="lu lu lu lu lu shi jian dao le"
 config/version="1.0"
 run/main_scene="uid://ibdwq7kbqw0x"
+run/enable_alt_space_menu=true
 config/use_custom_user_dir=true
 config/custom_user_dir_name="gd_recorder"
 config/features=PackedStringArray("4.4", "Forward Plus")
