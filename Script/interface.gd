@@ -12,6 +12,8 @@ const ICON_NOT_RECORDING: Texture2D = preload(PATH_ICON % "not_recording.svg")
 const ICON_PLAY: Texture2D = preload(PATH_ICON % "play.svg")
 const ICON_PAUSE: Texture2D = preload(PATH_ICON % "pause.svg")
 
+signal is_audio_playing(value: bool)
+
 var effect: AudioEffectRecord
 var recording: AudioStreamWAV 
 var path_last_save: String
@@ -68,12 +70,14 @@ func _on_record_pressed() -> void:
 
 		# Audio stuff
 		playback.stop()
+		is_audio_playing.emit(false)
 		
 		specturm.modulate.a = 1.0
 		play.modulate.a = 0.7
 		play.disabled = true
 		save.modulate.a = 0.7
 		save.disabled = true
+
 
 		
 
@@ -90,11 +94,13 @@ func _on_play_pressed() -> void:
 
 		if !playback.playing:
 			playback.play()
+		is_audio_playing.emit(true)
 		
 	else:
 		print("No audio to play")
 		play.texture_normal = ICON_PLAY
 		playback.stream_paused = true
+		is_audio_playing.emit(false)
 
 func _on_saved(a_file_path: String) -> void:
 	# save wav file and path
